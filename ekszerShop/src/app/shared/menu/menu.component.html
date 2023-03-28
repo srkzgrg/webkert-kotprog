@@ -1,12 +1,27 @@
-<nav>
-  <ul>
-    <li><a routerLink="">Főoldal</a></li>
-    <li><a routerLink="termekek">Termékek</a></li>
-    <li id="left"><a routerLink="bejelentkezes">Bejelentkezés</a></li>
-    <li id="left"><a routerLink="">Kosár</a></li>
-  </ul>
-</nav>
-<mat-icon fontSet="fontIcons" fontIcon="fontIcon"></mat-icon>
-<mat-icon svgIcon="svgIcons:svgIcon"></mat-icon>
-<mat-icon inline>ligature_icon</mat-icon>
-<mat-icon fontIcon="ligature_icon_by_attribute"></mat-icon>
+<mat-toolbar color="primary">
+    <span style="font-size: 20px;"><a routerLink="termekek">Pandora Szelencéje</a></span>
+    <div id="navbar">
+        <span><a routerLink="termekek">Termékek</a></span>
+        <span><a routerLink="kosar">Kosár</a></span>
+    </div>
+  <span class="toolbar-item-spacer"></span>
+  <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
+      <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
+      <button mat-menu-item routerLink="#">
+          <mat-icon>person</mat-icon><span>Profil</span>
+      </button>
+      <button mat-menu-item routerLink="#">
+          <mat-icon>settings</mat-icon><span>Beállítások</span>
+      </button>
+      <button mat-menu-item routerLink="#">
+          <mat-icon>help</mat-icon><span>Segítség</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item routerLink="#">
+          <mat-icon>exit_to_app</mat-icon>Kijelentkezés
+      </button>
+  </mat-menu>
+</mat-toolbar>
+

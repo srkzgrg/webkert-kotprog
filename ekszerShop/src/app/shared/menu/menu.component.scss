@@ -1,27 +1,17 @@
-ul {
-  list-style-type: none;
-  font-size: 20px;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #397eb6;
+.toolbar-item-spacer {
+  flex: 1 1 auto;
 }
 
-li {
-  float: left;
-  padding: 15px;
+#navbar span{
+  font-size: 17px;
+  padding-left: 50px;
 }
 
-li a {
-  color: rgb(255, 255, 255);
+a{
+  color: white;
   text-decoration: none;
-  text-align: center;
 }
 
-#left {
-  float: right;
-}
-
-.custom-class{
-  display:grid;
+a:hover{
+  color:gold;
 }

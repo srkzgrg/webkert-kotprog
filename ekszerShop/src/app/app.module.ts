@@ -8,6 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes }   from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,7 +47,11 @@ import { KosarComponent } from './pages/kosar/kosar.component';
     MatCardModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatSidenavModule
+    MatSidenavModule,
+    FormsModule,
+    RouterModule,
+    MatExpansionModule,
+    MatTooltipModule
 
   ],
   providers: [],
