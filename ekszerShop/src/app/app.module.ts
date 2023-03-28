@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes }   from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,7 +53,9 @@ import { KosarComponent } from './pages/kosar/kosar.component';
     FormsModule,
     RouterModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatInputModule
 
   ],
   providers: [],
