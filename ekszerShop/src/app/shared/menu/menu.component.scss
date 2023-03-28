@@ -1,0 +1,27 @@
+ul {
+  list-style-type: none;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #397eb6;
+}
+
+li {
+  float: left;
+  padding: 15px;
+}
+
+li a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  text-align: center;
+}
+
+#left {
+  float: right;
+}
+
+.custom-class{
+  display:grid;
+}
