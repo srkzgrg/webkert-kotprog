@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-bejelentkezes',
@@ -12,14 +14,15 @@ export class BejelentkezesComponent {
     password = new FormControl('');
     hide = true;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router,  private authService: AuthService) { }
     login() {
-      if (this.email.value === 'test@gmail.com' && this.password.value === 'testpw') {
-        //this.router.navigateByUrl('/main');
-        console.log("Sikeres bejelentkezés")
-      } else {
-        console.error('Hibás jelszó vagy email');
-      }
+       this.authService.login(this.email.value!, this.password.value!).then(cred => {
+        //TODO bejelentkezes
+        this.router.navigateByUrl('/main');
+      }).catch(error => {
+        //TODO error
+      });
+
     }
 
 }

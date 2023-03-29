@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ekszershop-webkert": {
+      "hosting": {
+        "ekszerShop": [
+          "ekszershop-webkert"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ekszershop-webkert"
+  }
+}

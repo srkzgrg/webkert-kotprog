@@ -97,6 +97,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ekszerShop:build:production",
+            "firebaseProject": "ekszershop-webkert",
+            "firebaseHostingSite": "ekszershop-webkert"
+          }
         }
       }
     }

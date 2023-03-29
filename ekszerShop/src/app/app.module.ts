@@ -9,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes }   from '@angular/router';
+import { RouterModule}   from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +27,11 @@ import { TermekekComponent } from './pages/termekek/termekek.component';
 import { BejelentkezesComponent } from './pages/bejelentkezes/bejelentkezes.component';
 import { RegisztracioComponent } from './pages/regisztracio/regisztracio.component';
 import { KosarComponent } from './pages/kosar/kosar.component';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -56,7 +61,12 @@ import { KosarComponent } from './pages/kosar/kosar.component';
     MatTooltipModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    //provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage())
 
   ],
   providers: [],

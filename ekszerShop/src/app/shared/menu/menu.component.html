@@ -2,29 +2,28 @@
     <span style="font-size: 20px;"><a routerLink="">Pandora Szelencéje</a></span>
     <div id="navbar">
         <span><a routerLink="termekek">Termékek</a></span>
-        <span><a routerLink="kosar">Kosár</a></span>
     </div>
   <span class="toolbar-item-spacer"></span>
+  <button mat-icon-button routerLink="kosar">
+    <mat-icon>shopping_cart</mat-icon>
+</button>
   <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
       <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
-      <button mat-menu-item routerLink="#">
+      <button mat-menu-item routerLink="#" *ngIf="loggedInUser">
           <mat-icon>person</mat-icon><span>Profil</span>
       </button>
-      <div *ngIf="user">
+      <div  *ngIf="!(loggedInUser)">
       <button mat-menu-item routerLink="bejelentkezes">
         <mat-icon>fingerprint</mat-icon><span>Bejelentkezés</span>
     </button>
     </div>
       <button mat-menu-item routerLink="#">
-          <mat-icon>settings</mat-icon><span>Beállítások</span>
-      </button>
-      <button mat-menu-item routerLink="#">
           <mat-icon>help</mat-icon><span>Segítség</span>
       </button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item routerLink="#">
+      <mat-divider *ngIf="loggedInUser"></mat-divider>
+      <button mat-menu-item (click)="logout()" *ngIf="loggedInUser">
           <mat-icon>exit_to_app</mat-icon>Kijelentkezés
       </button>
   </mat-menu>
