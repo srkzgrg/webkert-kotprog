@@ -12,6 +12,11 @@
       <button mat-menu-item routerLink="#">
           <mat-icon>person</mat-icon><span>Profil</span>
       </button>
+      <div *ngIf="user">
+      <button mat-menu-item routerLink="bejelentkezes">
+        <mat-icon>fingerprint</mat-icon><span>Bejelentkezés</span>
+    </button>
+    </div>
       <button mat-menu-item routerLink="#">
           <mat-icon>settings</mat-icon><span>Beállítások</span>
       </button>

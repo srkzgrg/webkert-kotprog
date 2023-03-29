@@ -14,7 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatRadioModule} from '@angular/material/radio';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -55,7 +55,8 @@ import { KosarComponent } from './pages/kosar/kosar.component';
     MatExpansionModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule
 
   ],
   providers: [],

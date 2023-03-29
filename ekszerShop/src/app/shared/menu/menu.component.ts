@@ -7,5 +7,5 @@ import { Component, NgModule, ViewChild } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-
+    user=true;
 }
