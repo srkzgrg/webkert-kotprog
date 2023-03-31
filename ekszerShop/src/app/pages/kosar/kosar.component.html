@@ -1,1 +1,55 @@
-<p>kosar works!</p>
+<mat-stepper #stepper>
+     <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+       <form [formGroup]="firstFormGroup">
+         <ng-template matStepLabel>Termékek</ng-template>
+         <table mat-table [dataSource]="kosar!" class="mat-elevation-z8">
+     
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="nev">
+            <th mat-header-cell *matHeaderCellDef> Név </th>
+            <td mat-cell *matCellDef="let element"> {{element.nev}} </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="mennyiseg">
+            <th mat-header-cell *matHeaderCellDef> Mennyiség </th>
+            <td mat-cell *matCellDef="let element"> {{element.mennyiseg}} </td>
+          </ng-container>
+        
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="ar">
+            <th mat-header-cell *matHeaderCellDef> Ár </th>
+            <td mat-cell *matCellDef="let element"> {{element.ar}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+         <div>
+           <button id="tovabbbtn" mat-button matStepperNext>Tovább</button>
+         </div>
+       </form>
+     </mat-step>
+     <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+       <form [formGroup]="secondFormGroup">
+         <ng-template matStepLabel>Szállítás</ng-template>
+         <mat-form-field appearance="fill">
+           <mat-label>Szállítási cím</mat-label>
+           <input matInput placeholder="5900, Orosháza..." formControlName="secondCtrl"
+                  required>
+         </mat-form-field>
+         <div>
+           <button mat-button matStepperNext>Tovább</button>
+         </div>
+       </form>
+     </mat-step>
+     <mat-step>
+       <ng-template matStepLabel>Véglegesítás</ng-template>
+       <p>You are now done.</p>
+       <div>
+         <button mat-button matStepperPrevious>Back</button>
+         <button mat-button (click)="stepper.reset()">Reset</button>
+       </div>
+     </mat-step>
+   </mat-stepper>

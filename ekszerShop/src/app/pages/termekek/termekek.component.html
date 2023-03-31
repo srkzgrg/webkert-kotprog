@@ -1,1 +1,13 @@
-<p>termekek works!</p>
+<div *ngFor="let item of termekek">
+    <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{item.nev}}</mat-card-title>
+            <mat-card-subtitle>{{item.ar}} Ft</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="item.image_url">
+          <mat-card-actions align="end">
+            <button *ngIf="(loggedInUser)" mat-button (click)="addKosar(item)">Kosárba</button>
+            <button id="loginbtn" *ngIf="!(loggedInUser)" mat-button routerLink="/bejelentkezes">Bejelentkezés a vásárláshoz</button>
+          </mat-card-actions>
+      </mat-card>
+</div>

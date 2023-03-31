@@ -16,8 +16,8 @@
      <div class="radio-input">
           <label>Nem: </label>
           <mat-radio-group [formControl]="nem">
-            <mat-radio-button value="auto">Férfi</mat-radio-button>
-            <mat-radio-button value="always">Nő</mat-radio-button>
+            <mat-radio-button value="Férfi">Férfi</mat-radio-button>
+            <mat-radio-button value="Nő">Nő</mat-radio-button>
           </mat-radio-group>
         </div>
      <div>
@@ -30,7 +30,7 @@
      </mat-form-field>
      </div>
      <div>
-     <mat-error *ngIf="foglalt">{{getErrorMessage_foglalt()}}</mat-error>
+     <mat-error *ngIf="foglalt">{{ErrorMessage_foglalt}}</mat-error>
      </div>
      <div class="login_buttons">
           <button mat-raised-button class="login-button" color="primary"  (click)="register()">Regisztráció</button>
