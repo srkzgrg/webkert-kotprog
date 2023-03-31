@@ -1,16 +1,23 @@
 import { Component, Input, OnInit, Output} from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/Product';
 import { KosarService } from '../../services/kosar.service';
 import { AuthService } from '../../services/auth.service';
 import { Kosar } from 'src/app/models/Kosar';
 import { ProductService } from 'src/app/services/product.service';
 import { Subscription, take } from 'rxjs';
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-kosar',
   templateUrl: './kosar.component.html',
   styleUrls: ['./kosar.component.scss'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {showError: true},
+    },
+  ],
 })
 export class KosarComponent implements OnInit{
     kosar?: Array<Kosar>;
@@ -18,19 +25,27 @@ export class KosarComponent implements OnInit{
     loggedInUser?: firebase.default.User | null;
     ar?: Number;
     sub?: Subscription;
+    ErrorMessage_hianyzik = "Hiányzó adatok";
+    hiba: boolean | undefined //E-mail foglalt-e
+    @Input() elfogadva: any
 
     displayedColumns: string[] = ['nev', 'mennyiseg', 'ar'];
   
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
+    firstFormGroup = this._formBuilder.group({
+    });
+
+    secondFormGroup = this._formBuilder.group({
+      cim: ['', Validators.required],
+      telefonszam: ['', Validators.required],
+    });
+
+    
 
   constructor(private _formBuilder: FormBuilder, private kosarService: KosarService, private authService: AuthService, private productService: ProductService) {}
 
   ngOnInit(): void{
+    this.hiba = false;
+    this.elfogadva = false;
     this.ar = 0;
     this.loggedInUser = JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
 
@@ -53,5 +68,12 @@ export class KosarComponent implements OnInit{
       this.sub?.unsubscribe;
   }
   
+  leadas(){
+    if(this.secondFormGroup.get('cim')?.value == "" || this.secondFormGroup.get('cim')?.value == "" || this.elfogadva === false){
+      this.hiba=true
+    }else{
+      console.log("Sikeres rendelés")
+    }
+  }
 
 }
