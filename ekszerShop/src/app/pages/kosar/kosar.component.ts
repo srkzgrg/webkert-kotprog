@@ -1,12 +1,15 @@
-import { Component, Input, OnInit, Output} from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/Product';
 import { KosarService } from '../../services/kosar.service';
 import { AuthService } from '../../services/auth.service';
 import { Kosar } from 'src/app/models/Kosar';
 import { ProductService } from 'src/app/services/product.service';
+import { RendelesService } from 'src/app/services/rendeles.service';
 import { Subscription, take } from 'rxjs';
-import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Rendeles } from 'src/app/models/Rendeles';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kosar',
@@ -15,65 +18,121 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: {showError: true},
+      useValue: { showError: true },
     },
   ],
 })
-export class KosarComponent implements OnInit{
-    kosar?: Array<Kosar>;
-    termek?: Product;
-    loggedInUser?: firebase.default.User | null;
-    ar?: Number;
-    sub?: Subscription;
-    ErrorMessage_hianyzik = "Hiányzó adatok";
-    hiba: boolean | undefined //E-mail foglalt-e
-    @Input() elfogadva: any
+export class KosarComponent implements OnInit {
+  kosar?: Array<Kosar>;
+  loggedInUser?: firebase.default.User | null;
+  ErrorMessage_hianyzik?: string;
+  hiba?: boolean;
+  @Input() elfogadva: any;
+  ures?: boolean;
+  vegosszeg?: number;
 
-    displayedColumns: string[] = ['nev', 'mennyiseg', 'ar'];
-  
-    firstFormGroup = this._formBuilder.group({
-    });
+  displayedColumns: string[] = ['nev', 'mennyiseg', 'ar', 'modositas'];
 
-    secondFormGroup = this._formBuilder.group({
-      cim: ['', Validators.required],
-      telefonszam: ['', Validators.required],
-    });
+  firstFormGroup = this._formBuilder.group({});
 
-    
+  secondFormGroup = this._formBuilder.group({
+    cim: ['', Validators.required],
+    telefonszam: ['', Validators.required],
+  });
 
-  constructor(private _formBuilder: FormBuilder, private kosarService: KosarService, private authService: AuthService, private productService: ProductService) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private kosarService: KosarService,
+    private rendelesService: RendelesService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void{
+  ngOnInit(): void {
+    this.vegosszeg = 0;
+    this.ures = false;
     this.hiba = false;
     this.elfogadva = false;
-    this.ar = 0;
-    this.loggedInUser = JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
+    this.loggedInUser = JSON.parse(
+      localStorage.getItem('user') as string
+    ) as firebase.default.User;
 
-    this.kosarService.getByUserId(this.loggedInUser.uid).subscribe((data: Array<Kosar>) => {
-      this.kosar = data;
-    });
+    this.kosarService
+      .getByUserId(this.loggedInUser.uid)
+      .subscribe((data: Array<Kosar>) => {
+        this.kosar = data;
+        this.vegosszeg = 0;
+        if (this.kosar?.length == 0) {
+          this.ures = true;
+        }else{
+          this.kosar?.forEach(item =>{
+            this.vegosszeg! += item.ar;
+          })
+        }
+      });
 
-    
+      
   }
-  
 
-  getProduct(id: string){
-    this.sub = this.productService.getById(id).pipe(take(1)).subscribe(data => {
-      this.termek = data;
-    });
+  leadas() {
+    let userid = this.loggedInUser?.uid;
+    if (
+      this.secondFormGroup.get('cim')?.value == '' ||
+      this.secondFormGroup.get('telefonszam')?.value == ''
+    ) {
+      this.ErrorMessage_hianyzik = 'Hiányzó adatok a szállítás fülön';
+      this.hiba = true;
+    } else if (this.elfogadva === false) {
+      this.ErrorMessage_hianyzik = 'ÁSZF elfogadása kötelező';
+      this.hiba = true;
+    } else {
+      let vegosszeg = 0;
+      this.kosar!.forEach((element) => {
+        vegosszeg += element.ar;
+      });
 
-  }
+      let rendeles: Rendeles = {
+        id: '',
+        user_id: userid!,
+        termekek: this.kosar!,
+        datum: new Date().getTime(),
+        cim: this.secondFormGroup.get('cim')?.value!,
+        telefon: this.secondFormGroup.get('cim')?.value!,
+        osszar: vegosszeg,
+      };
+      this.rendelesService.create(rendeles);
 
-  ngAfterViewChecked(){
-      this.sub?.unsubscribe;
-  }
-  
-  leadas(){
-    if(this.secondFormGroup.get('cim')?.value == "" || this.secondFormGroup.get('cim')?.value == "" || this.elfogadva === false){
-      this.hiba=true
-    }else{
-      console.log("Sikeres rendelés")
+      //Kosár törlése
+      this.kosar!.forEach((element) => {
+        this.kosarService.delete(element.id);
+      });
+
+      this.router.navigateByUrl('/main');
     }
   }
 
+  plus(id: string) {
+    this.kosar?.forEach((element) => {
+      if (element.id == id) {
+        let mennyiseg = element.mennyiseg + 1;
+        let ar: number = element.ar as number;
+        ar += element.termek.ar;
+        this.kosarService.updateMennyiseg(id, mennyiseg, ar); //UPDATE
+      }
+    });
+  }
+
+  minus(id: string) {
+    this.kosar?.forEach((element) => {
+      if (element.id == id) {
+        let mennyiseg = element.mennyiseg - 1;
+        let ar= element.ar;
+        if(mennyiseg == 0){
+          this.kosarService.delete(element.id);
+        }else{
+          ar -= element.termek.ar;
+          this.kosarService.updateMennyiseg(id, mennyiseg, ar);
+        }
+      }
+    });
+  }
 }

@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/Product';
 import { ProductService } from '../../services/product.service';
-import { AuthService } from '../../services/auth.service';
 import { KosarService } from '../../services/kosar.service';
 import { Kosar } from 'src/app/models/Kosar';
 import { Subscription, take } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-termekek',
@@ -20,8 +20,12 @@ export class TermekekComponent {
   image_url?: string;
   ks?: Array<Kosar>;
   subscription?: Subscription;
+  durationInSeconds=3;
 
-  constructor(private productService: ProductService, private authService: AuthService, private kosarService: KosarService) {}
+  constructor(
+    private productService: ProductService, 
+    private kosarService: KosarService, 
+    private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.productService.getAll().subscribe((data: Array<Product>) => {
@@ -34,7 +38,6 @@ export class TermekekComponent {
   addKosar(product: Product){
       let productid = product.id;
       let userid = this.loggedInUser?.uid;
-      let productnev = product.nev;
       let productar = product.ar;
       this.kosarService.getByUserAndProductId(userid!, productid).pipe(take(1)).subscribe(kosar => {
         this.ks = kosar
@@ -42,29 +45,26 @@ export class TermekekComponent {
           let ksUj: Kosar = {
             id: "",
             user_id: userid!,
-            ekszer_id: productid,
+            termek: product,
             mennyiseg: 1,
-            nev: productnev,
-            ar: productar
+            ar: productar as number
           }
           this.kosarService.create(ksUj); //INSERT
         }else{
           console.log("van már ilyen")
           let ksUpdate: Kosar = {
             id: this.ks![0].id,
+            termek: product,
             user_id: this.ks![0].user_id,
-            ekszer_id: this.ks![0].ekszer_id,
             mennyiseg: this.ks![0].mennyiseg,
-            nev: this.ks![0].nev,
             ar: this.ks![0].ar
           };
           ksUpdate.mennyiseg++;
-          ksUpdate.ar*=ksUpdate.mennyiseg;
+          ksUpdate.ar =ksUpdate.termek.ar as number * ksUpdate.mennyiseg as number;
           this.kosarService.update(ksUpdate); //UPDATE
         }
       }); 
-
-      
+        this._snackBar.open("Hozzáadva a kosárhoz", "OK", {duration: this.durationInSeconds * 1000});
     }
 
     OnDestroy(){

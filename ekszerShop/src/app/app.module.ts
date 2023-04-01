@@ -17,6 +17,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -35,6 +38,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import {MatStepperModule} from '@angular/material/stepper';
+import { DatePipe } from './pipes/date.pipe';
+import { ProfilComponent } from './pages/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +50,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     BejelentkezesComponent,
     RegisztracioComponent,
     KosarComponent,
+    DatePipe,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +75,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatStepperModule,
     MatTableModule,
     MatCheckboxModule,
+    MatSnackBarModule,
+    MatBadgeModule,
     AngularFireModule.initializeApp(environment.firebase),
     //provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

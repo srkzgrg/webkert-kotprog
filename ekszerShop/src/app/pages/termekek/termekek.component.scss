@@ -1,19 +1,23 @@
 img{
      padding-left: 15px;
      padding-top: 15px;
-    width: 60%;
-    height: 60%;
+     width: 65%;
+     height: 65%;
 }
 
 mat-card{
      margin-top: 20px;
-     width: 40%;
+     box-shadow: -10px 5px 10px 10px rgb(192, 192, 192);
+     padding-left: 15px;
+
+    
 }
 
 mat-card-title{
      font-size: 20px;
 }
 mat-card-subtitle{
+     margin-top: 10px;
      font-size: 20px;    
 }
 
@@ -25,3 +29,9 @@ button{
      font-size: 15px;
 }
 
+.termekek_div{
+     display: inline-flex;
+     width: 40%;
+     margin-left: 5%;
+     margin-right: 5%;
+}

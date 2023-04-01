@@ -1,0 +1,21 @@
+<h1>Rendelések:</h1>
+<div *ngFor="let item of rendelesek" class="rendelesek">
+<mat-accordion>
+     <mat-expansion-panel hideToggle>
+       <mat-expansion-panel-header>
+         <mat-panel-title>
+          Rendelés: {{item.datum | date}}
+         </mat-panel-title>
+         <mat-panel-description>
+          Rendelés azonosító: {{item.id}}
+         </mat-panel-description>
+       </mat-expansion-panel-header>
+       <div *ngFor="let i of item.termekek">
+       <p>{{i.termek.nev}}:&emsp;{{i.mennyiseg}} db => {{i.ar}} Ft</p>
+     </div>
+     <mat-divider></mat-divider>
+     <p>Összesen:&emsp;{{item.osszar}} Ft</p>
+     </mat-expansion-panel>
+</mat-accordion>
+</div>
+

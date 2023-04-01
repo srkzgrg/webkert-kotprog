@@ -21,11 +21,15 @@ export class KosarService {
   }
 
   getByUserAndProductId(userid: string, productid: string) {
-    return this.afs.collection<Kosar>(this.collectionName, ref => ref.where('user_id','==',userid).where('ekszer_id','==',productid)).valueChanges();
+    return this.afs.collection<Kosar>(this.collectionName, ref => ref.where('user_id','==',userid).where('termek.id','==',productid)).valueChanges();
   }
 
   update(kosar: Kosar) {
     return this.afs.collection<Kosar>(this.collectionName).doc(kosar.id).set(kosar);
+  }
+
+  updateMennyiseg(kosarid: string, mennyiseg: number, ar: number){
+    return this.afs.collection<Kosar>(this.collectionName).doc(kosarid).update({"mennyiseg": mennyiseg, "ar": ar});
   }
 
   delete(id: string) {

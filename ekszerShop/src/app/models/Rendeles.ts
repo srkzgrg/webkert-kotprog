@@ -1,7 +1,11 @@
+import { Kosar } from "./Kosar";
+
 export interface Rendeles {
-    id: number;
-    user_id: number;
-    ekszer_id: number;
-    mennyiseg: number;
-    datum: Date;
+    id: string;
+    user_id: string;
+    termekek: Array<Kosar>;
+    datum: number;
+    osszar: number;
+    cim: string;
+    telefon: string;
 }
