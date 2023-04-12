@@ -3,5 +3,6 @@ export interface Product {
     nev: string,
     ar: number,
     image_url: string,
-    tipus: string
+    tipus: string,
+    download_url: string
 }
