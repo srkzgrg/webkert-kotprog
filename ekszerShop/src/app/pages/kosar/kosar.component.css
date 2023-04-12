@@ -1,0 +1,49 @@
+table {
+  margin-top: 25px;
+  width: 100%;
+}
+
+#tovabbbtn {
+  margin-top: 35px;
+  font-size: 25px;
+}
+
+#cimInput {
+  width: 200px;
+  height: 30px;
+}
+
+#szallitasForm {
+  margin-top: 20px;
+}
+
+#visszabtn {
+  margin-top: 35px;
+  margin-right: 25px;
+  font-size: 20px;
+}
+
+.ureskosar {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.telinput {
+  margin-top: 15px;
+}
+
+mat-error {
+  margin-top: 15px;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.plusbtn {
+  margin-left: 10px;
+}
+
+p {
+  padding-top: 20px;
+  font-size: 17px;
+}
+/*# sourceMappingURL=kosar.component.css.map */

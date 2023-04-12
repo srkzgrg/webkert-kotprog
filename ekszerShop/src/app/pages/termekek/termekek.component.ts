@@ -31,7 +31,7 @@ export class TermekekComponent {
     this.productService.getAll().subscribe((data: Array<Product>) => {
       this.termekek = data;
     });
-
+    
     this.loggedInUser = JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
   }
 

@@ -1,0 +1,20 @@
+.toolbar-item-spacer {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+#navbar span {
+  font-size: 17px;
+  padding-left: 50px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: gold;
+}
+/*# sourceMappingURL=menu.component.css.map */
