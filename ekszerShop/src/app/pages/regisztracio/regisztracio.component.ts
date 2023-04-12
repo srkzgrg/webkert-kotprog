@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthService } from '../../services/auth.service';
@@ -12,21 +13,26 @@ import { UserService } from '../../services/user.service';
 })
 export class RegisztracioComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
   nev = new FormControl('', [Validators.required]);
   nem = new FormControl('', [Validators.required]);
   hide: boolean | undefined; //Jelszó megjelenítő
-  foglalt: boolean | undefined //E-mail foglalt-e
-  ErrorMessage_foglalt = "Ez az e-mail cím már foglalt";
 
-  constructor(private router: Router,  private authService: AuthService, private userService: UserService) { }
+  constructor(private router: Router,  private authService: AuthService, private userService: UserService,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.foglalt=false;
-    this.hide = true; //E-mail foglalt-e
+    this.hide = true;
   }
 
   register() {
+    if(this.email.hasError('required') || this.password.hasError('required') || this.nev.hasError('required') || this.nem.hasError('required')){
+      this._snackBar.open("Az összes mező kitöltése kötelező!", "OK");
+    }else if(this.email.hasError('email')){
+      this._snackBar.open("Nem megfelelő e-mail formátum!", "OK");
+    }else if(this.password.hasError('minlength')){
+      this._snackBar.open("A jelszónak legalább 6 karakter hosszúnak kell lennie!", "OK");
+    }
+    else{
     this.authService.signup(this.email.value!, this.password.value!).then(cred => {
       const user: User = {
         id: cred.user?.uid as string,
@@ -40,8 +46,9 @@ export class RegisztracioComponent implements OnInit {
         console.error(error);
       })
     }).catch(error => {
-      this.foglalt=true;
+      this._snackBar.open("A megadott e-mail címmel már van fiók!", "OK");
     });
+  }
   }
 
   getErrorMessage_email() {
