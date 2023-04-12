@@ -3,4 +3,5 @@ export interface User {
     nev: string,
     email: string;
     nem: string;
+    admin: string;
 }

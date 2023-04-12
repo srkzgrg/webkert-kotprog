@@ -40,6 +40,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import {MatStepperModule} from '@angular/material/stepper';
 import { DatePipe } from './pipes/date.pipe';
 import { ProfilComponent } from './pages/profil/profil.component';
+import { AdminModule } from './pages/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -81,8 +82,8 @@ import { ProfilComponent } from './pages/profil/profil.component';
     //provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
-
+    provideStorage(() => getStorage()),
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

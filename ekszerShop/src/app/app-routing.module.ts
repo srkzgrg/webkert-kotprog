@@ -7,10 +7,14 @@ import { ProfilComponent } from './pages/profil/profil.component';
 import { RegisztracioComponent } from './pages/regisztracio/regisztracio.component';
 import { TermekekComponent } from './pages/termekek/termekek.component';
 import { AuthGuard } from './services/auth.guard';
+import { AdminGuard } from './services/admin.guard';
 
 const routes: Routes = [
   
   {path: '', component: MainComponent},
+  {path: 'admin', 
+  loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+  canActivate: [AdminGuard]},
   {path: 'termekek', component: TermekekComponent},
   {path: 'profil', component: ProfilComponent, canActivate: [AuthGuard]},
   {path: 'kosar', component: KosarComponent, canActivate: [AuthGuard]},

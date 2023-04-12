@@ -38,7 +38,8 @@ export class RegisztracioComponent implements OnInit {
         id: cred.user?.uid as string,
         email: this.email.value as string,
         nem: this.nem.value as string,
-        nev: this.nev.value as string
+        nev: this.nev.value as string,
+        admin: 'false'
       };
       this.userService.create(user).then(_ => {
         this.router.navigateByUrl('/main');
