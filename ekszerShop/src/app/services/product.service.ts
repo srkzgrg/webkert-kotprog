@@ -27,6 +27,13 @@ export class ProductService {
 
   }
 
+  uploadImage(image: File, filename: string){
+    let metadata = { contentType: 'image/jpeg', }
+    const filePath = `images/products/${filename}`;
+    const fileRef = this.storage.ref(filePath);
+    return this.storage.upload(filePath, image, metadata);
+  }
+
   getById(id: string) {
     return this.afs.collection<Product>(this.collectionName).doc(id).valueChanges();
   }
@@ -39,3 +46,5 @@ export class ProductService {
     return this.afs.collection<Product>(this.collectionName).doc(id).delete();
   }
 }
+
+

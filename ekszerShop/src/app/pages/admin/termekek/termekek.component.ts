@@ -1,8 +1,10 @@
-import { Component, Inject, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { Product } from 'src/app/models/Product';
 import { ProductService } from 'src/app/services/product.service';
+import { DialogComponent } from './dialog/dialog.component';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-termekek',
@@ -11,6 +13,8 @@ import { ProductService } from 'src/app/services/product.service';
 })
 
 export class TermekekComponent implements OnInit{
+
+  product?: Product;
   loggedInUser?: firebase.default.User | null;
   termekek?: Array<Product>;
   displayedColumns: string[] = ['nev', 'ar', 'modositas'];
@@ -37,21 +41,18 @@ export class TermekekComponent implements OnInit{
   }
 
   update(id: string){
-    this.openDialog()
+    this.productService.getById(id).pipe(take(1)).subscribe(data => {
+      this.product = data
+      this.openDialog()
+    })
+  
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(Dialog);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '650px',
+      data: this.product,
     });
-  }
-
  }
 
- @Component({
-  selector: 'dialog',
-  templateUrl: 'dialog.html',
-})
-export class Dialog {}
+}

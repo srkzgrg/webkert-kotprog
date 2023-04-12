@@ -7,10 +7,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { DialogComponent } from './termekek/dialog/dialog.component';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatListModule } from "@angular/material/list";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
-    TermekekComponent
+    TermekekComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +27,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule, 
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
