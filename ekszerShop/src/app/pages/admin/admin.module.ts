@@ -14,11 +14,15 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatListModule } from "@angular/material/list";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ProductAddDialogComponent } from './termekek/product-add-dialog/product-add-dialog.component';
+import { RendelesekComponent } from './rendelesek/rendelesek.component';
 
 @NgModule({
   declarations: [
     TermekekComponent,
-    DialogComponent
+    DialogComponent,
+    ProductAddDialogComponent,
+    RendelesekComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,43 @@
+<h1 mat-dialog-title id="title">Termék hozzáadása</h1>
+<div mat-dialog-content id="content">
+  <p>Adatok</p>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Név</mat-label>
+      <input matInput [formControl]="nev"/>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Ár</mat-label>
+      <input matInput [formControl]="ar"/>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Típus</mat-label>
+      <input matInput [formControl]="tipus"/>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Kép felöltés</mat-label>
+			<button mat-icon-button matPrefix (click)="f_input.click()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+			<input type="text" readonly matInput [formControl]="display"/>
+			<input
+        type="file"
+        multiple
+        hidden
+        #f_input
+        (change)="handleFileInputChange($event)"
+      />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="save()">Mentés</button>
+  <button mat-button (click)="close()">Mégse</button>
+ 
+</div>

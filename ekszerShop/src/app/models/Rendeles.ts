@@ -8,4 +8,5 @@ export interface Rendeles {
     osszar: number;
     cim: string;
     telefon: string;
+    statusz: string;
 }

@@ -98,6 +98,7 @@ export class KosarComponent implements OnInit {
         cim: this.secondFormGroup.get('cim')?.value!,
         telefon: this.secondFormGroup.get('cim')?.value!,
         osszar: vegosszeg,
+        statusz: "Feldolgozás alatt"
       };
       this.rendelesService.create(rendeles);
 

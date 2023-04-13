@@ -15,6 +15,7 @@ export class ProductService {
   constructor(private afs: AngularFirestore,  private storage: AngularFireStorage) { }
 
   create(product: Product) {
+    product.id = this.afs.createId();
     return this.afs.collection<Product>(this.collectionName).doc(product.id).set(product);
   }
 

@@ -11,24 +11,25 @@ import { AuthService } from '../../services/auth.service';
 })
 export class MenuComponent implements OnInit {
     loggedInUser?: firebase.default.User | null;
+    admin?: string | null;
     constructor(private authService: AuthService, private userServie: UserService){}
     
   ngOnInit(): void {
     this.authService.isUserLoggedIn().subscribe(user => {
-      console.log(user);
       this.loggedInUser = user;
       if(user == null){
         localStorage.setItem('admin', JSON.stringify(null));
       }else{
         this.userServie.getById(user!.uid).pipe(take(1)).subscribe(data=>{
           localStorage.setItem('admin', data!.admin);
+          this.admin = data?.admin;
         });
       }
       localStorage.setItem('user', JSON.stringify(this.loggedInUser));
       
     }, error => {
       console.error(error);
-      localStorage.setItem('admin', JSON.stringify('null'));
+      localStorage.setItem('admin', JSON.stringify(null));
       localStorage.setItem('user', JSON.stringify('null'));
     });
   }

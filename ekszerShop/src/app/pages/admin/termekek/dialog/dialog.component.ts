@@ -16,6 +16,7 @@ export class DialogComponent {
   display: FormControl = new FormControl("");
   upload?: File;
   product?: Product;
+
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Product,
@@ -51,7 +52,8 @@ export class DialogComponent {
         nev: this.nev!,
       };
     }
-    this.productServie.update(this.product);
+    this.productServie.update(this.product).finally(() => {location.reload();});
+
   }
   close(){
     this.dialogRef.close();

@@ -1,13 +1,19 @@
 <mat-toolbar color="primary">
     <span style="font-size: 20px;"><a routerLink="">Pandora Szelencéje</a></span>
-    <div id="navbar">
+    <div id="navbar" *ngIf="admin === 'false' || admin == null">
         <span><a routerLink="termekek">Termékek</a></span>
     </div>
+    <div id="navbar" *ngIf="admin === 'true'">
+        <span><a routerLink="admin/termekek">Termékek kezelése</a></span>
+    </div>
+    <div id="navbar" *ngIf="admin === 'true'">
+        <span><a routerLink="admin/rendelesek">Rendelések kezelése</a></span>
+    </div>
   <span class="toolbar-item-spacer"></span>
-  <button mat-icon-button routerLink="kosar" matTooltip="Kosár">
+  <button mat-icon-button routerLink="kosar" matTooltip="Kosár" *ngIf="admin === 'false' || admin == null">
     <mat-icon>shopping_cart</mat-icon>
-
 </button>
+
   <button mat-icon-button matTooltip="Fiók" [matMenuTriggerFor]="userAccountMenu">
       <mat-icon>account_circle</mat-icon>
   </button>
@@ -15,14 +21,17 @@
       <button mat-menu-item routerLink="profil" *ngIf="loggedInUser">
           <mat-icon>person</mat-icon><span>Profil</span>
       </button>
-      <div  *ngIf="!(loggedInUser)">
+      <button mat-menu-item routerLink="kosar" *ngIf="admin === 'true'">
+        <mat-icon>shopping_cart</mat-icon><span>Kosár</span>
+    </button>
+      <div *ngIf="!(loggedInUser)">
       <button mat-menu-item routerLink="bejelentkezes">
         <mat-icon>fingerprint</mat-icon><span>Bejelentkezés</span>
     </button>
+    <button mat-menu-item routerLink="regisztracio" ng>
+        <mat-icon>person_add</mat-icon><span>Regisztráció</span>
+    </button>
     </div>
-      <button mat-menu-item routerLink="#">
-          <mat-icon>help</mat-icon><span>Segítség</span>
-      </button>
       <mat-divider *ngIf="loggedInUser"></mat-divider>
       <button mat-menu-item (click)="logout()" *ngIf="loggedInUser">
           <mat-icon>exit_to_app</mat-icon>Kijelentkezés
