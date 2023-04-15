@@ -18,12 +18,9 @@
       <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
-      <button mat-menu-item routerLink="profil" *ngIf="loggedInUser">
+      <button mat-menu-item routerLink="profil" *ngIf="loggedInUser && (admin === 'false' || admin == null)">
           <mat-icon>person</mat-icon><span>Profil</span>
       </button>
-      <button mat-menu-item routerLink="kosar" *ngIf="admin === 'true'">
-        <mat-icon>shopping_cart</mat-icon><span>Kosár</span>
-    </button>
       <div *ngIf="!(loggedInUser)">
       <button mat-menu-item routerLink="bejelentkezes">
         <mat-icon>fingerprint</mat-icon><span>Bejelentkezés</span>
@@ -32,7 +29,7 @@
         <mat-icon>person_add</mat-icon><span>Regisztráció</span>
     </button>
     </div>
-      <mat-divider *ngIf="loggedInUser"></mat-divider>
+      <mat-divider *ngIf="loggedInUser && (admin === 'false' || admin == null)"></mat-divider>
       <button mat-menu-item (click)="logout()" *ngIf="loggedInUser">
           <mat-icon>exit_to_app</mat-icon>Kijelentkezés
       </button>

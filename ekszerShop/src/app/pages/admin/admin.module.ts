@@ -16,6 +16,8 @@ import { MatListModule } from "@angular/material/list";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ProductAddDialogComponent } from './termekek/product-add-dialog/product-add-dialog.component';
 import { RendelesekComponent } from './rendelesek/rendelesek.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RendelesekComponent } from './rendelesek/rendelesek.component';
     MatFormFieldModule,
     FormsModule,
     MatInputModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDividerModule,
+    MatExpansionModule
   ]
 })
 export class AdminModule { }

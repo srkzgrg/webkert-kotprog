@@ -35,7 +35,7 @@ export class DialogComponent {
     if(typeof this.upload === "undefined"){
       this.product = {
         id: this.data.id,
-        ar: this.ar!,
+        ar: this.ar! as number,
         image_url: this.data.image_url,
         download_url: "",
         tipus: this.tipus!,
@@ -45,7 +45,7 @@ export class DialogComponent {
       this.productServie.uploadImage(this.upload!, this.upload!.name).snapshotChanges().pipe().subscribe();
       this.product = {
         id: this.data.id,
-        ar: this.ar!,
+        ar: this.ar! as number,
         image_url: path,
         download_url: "",
         tipus: this.tipus!,

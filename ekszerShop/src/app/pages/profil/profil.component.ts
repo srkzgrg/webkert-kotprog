@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { take, VirtualTimeScheduler } from 'rxjs';
 import { Rendeles } from '../../models/Rendeles';
@@ -9,7 +9,7 @@ import { RendelesService } from '../../services/rendeles.service';
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.scss']
 })
-export class ProfilComponent {
+export class ProfilComponent implements OnInit{
   loggedInUser?: firebase.default.User | null;
   rendelesek?: Array<Rendeles>;
   

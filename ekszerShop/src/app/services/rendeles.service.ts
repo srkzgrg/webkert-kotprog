@@ -20,4 +20,12 @@ export class RendelesService {
     return this.afs.collection<Rendeles>(this.collectionName, ref => ref.where('user_id','==',id).orderBy('datum', 'desc')).valueChanges();
   }
 
+  getByOrderStatus(status: string) {
+    return this.afs.collection<Rendeles>(this.collectionName, ref => ref.where('statusz', '==', status).orderBy('datum', 'desc')).valueChanges();
+  }
+
+  updateStatus(id: string, status: string){
+    return this.afs.collection(this.collectionName).doc(id).update({statusz: status});
+  }
+
 }

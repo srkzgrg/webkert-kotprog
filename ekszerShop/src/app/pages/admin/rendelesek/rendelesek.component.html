@@ -1,1 +1,73 @@
-<p>rendelesek works!</p>
+<h2>Feldolgozás alatt lévő rendelések:</h2>
+<div *ngFor="let item of rendelesekFeldolg" class="rendelesek">
+<mat-accordion>
+     <mat-expansion-panel hideToggle>
+       <mat-expansion-panel-header>
+         <mat-panel-title>
+          Rendelés: {{item.datum | date}}
+         </mat-panel-title>
+         <mat-panel-description>
+          Rendelés azonosító: {{item.id}}
+         </mat-panel-description>
+       </mat-expansion-panel-header>
+       <p class="acc"><mat-icon>account_circle</mat-icon>: {{item.user_id}}</p>
+       <div *ngFor="let i of item.termekek">
+       <p>{{i.termek.nev}}:&emsp;{{i.ar}} Ft&emsp;({{i.mennyiseg}} db)</p>
+     </div>
+     <mat-divider></mat-divider>
+     <p>Összesen:&emsp;{{item.osszar}} Ft</p>
+     <p id="statuschange">Státuszkezelés: </p>
+     <button mat-raised-button (click)="statuschange(item.id, 'Kiszállítás alatt')">Kiszállítás alatt<mat-icon>local_shipping</mat-icon></button>
+     <button mat-raised-button (click)="statuschange(item.id, 'Kiszállítva')">Kiszállítva<mat-icon>check_circle</mat-icon></button>
+     </mat-expansion-panel>
+
+</mat-accordion>
+</div>
+
+<h2>Kiszállítás alatt lévő rendelések:</h2>
+<div *ngFor="let item of rendelesekDelivey" class="rendelesek">
+     <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               Rendelés: {{item.datum | date}}
+              </mat-panel-title>
+              <mat-panel-description>
+               Rendelés azonosító: {{item.id}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let i of item.termekek">
+              <p>{{i.termek.nev}}:&emsp;{{i.ar}} Ft&emsp;({{i.mennyiseg}} db)</p>
+          </div>
+          <mat-divider></mat-divider>
+          <p>Összesen:&emsp;{{item.osszar}} Ft</p>
+          <p id="statuschange">Státuszkezelés: </p>
+          <button mat-raised-button (click)="statuschange(item.id, 'Feldolgozás alatt')">Feldolgozás alatt<mat-icon>settings</mat-icon></button>
+          <button mat-raised-button (click)="statuschange(item.id, 'Kiszállítva')">Kiszállítva <mat-icon>check_circle</mat-icon></button>
+          </mat-expansion-panel>
+     </mat-accordion>
+     </div>
+     
+<h2>Teljesített rendelések:</h2>
+<div *ngFor="let item of rendelesekDone" class="rendelesek">
+     <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               Rendelés: {{item.datum | date}}
+              </mat-panel-title>
+              <mat-panel-description>
+               Rendelés azonosító: {{item.id}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let i of item.termekek">
+              <p>{{i.termek.nev}}:&emsp;{{i.ar}} Ft&emsp;({{i.mennyiseg}} db)</p>
+          </div>
+          <mat-divider></mat-divider>
+          <p>Összesen:&emsp;{{item.osszar}} Ft</p>
+          <p id="statuschange">Státuszkezelés: </p>
+          <button mat-raised-button (click)="statuschange(item.id, 'Feldolgozás alatt')">Feldolgozás alatt<mat-icon>settings</mat-icon></button>
+          <button mat-raised-button (click)="statuschange(item.id, 'Kiszállítás alatt')">Kiszállítás alatt<mat-icon>local_shipping</mat-icon></button>
+          </mat-expansion-panel>
+     </mat-accordion>
+     </div>

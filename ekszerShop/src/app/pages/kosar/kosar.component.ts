@@ -116,7 +116,7 @@ export class KosarComponent implements OnInit {
       if (element.id == id) {
         let mennyiseg = element.mennyiseg + 1;
         let ar: number = element.ar as number;
-        ar += element.termek.ar;
+        ar = (ar + element.termek.ar) as number;
         this.kosarService.updateMennyiseg(id, mennyiseg, ar); //UPDATE
       }
     });

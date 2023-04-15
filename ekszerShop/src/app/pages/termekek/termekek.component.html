@@ -5,8 +5,8 @@
             <mat-card-subtitle>{{item.ar}} Ft</mat-card-subtitle>
           </mat-card-header>
           <img mat-card-image [src]="item.download_url">
-          <mat-card-actions align="end">
-            <button *ngIf="(loggedInUser)" mat-button (click)="addKosar(item)">Kosárba</button>
+          <mat-card-actions>
+            <button *ngIf="(loggedInUser)" mat-button (click)="addKosar(item)">Kosárba<mat-icon>add_shopping_cart</mat-icon></button>
             <button id="loginbtn" *ngIf="!(loggedInUser)" mat-button routerLink="/bejelentkezes">Bejelentkezés a vásárláshoz</button>
           </mat-card-actions>
       </mat-card>
