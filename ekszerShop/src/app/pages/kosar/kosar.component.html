@@ -39,14 +39,14 @@
      <mat-step [stepControl]="secondFormGroup" errorMessage="Hiányos adatok">
        <form id="szallitasForm" [formGroup]="secondFormGroup">
          <ng-template matStepLabel>Szállítás</ng-template>
-         <div>
+         <div class="szallitasInput">
          <mat-form-field appearance="fill">
            <mat-label>Szállítási cím</mat-label>
            <input id="cimInput" matInput placeholder="6720, Szeged..." formControlName="cim"
                   required>
          </mat-form-field>
         </div>
-        <div class="telinput">
+        <div class="szallitasInput">
          <mat-form-field appearance="fill">
           <mat-label>Telefonszám</mat-label>
          <input id="cimInput" matInput placeholder="+36 30 123 4567" formControlName="telefonszam"
@@ -64,9 +64,7 @@
        <section class="example-section" required>
         <mat-checkbox class="example-margin" [(ngModel)]="elfogadva">Elfogadom az <a href="https://www.youtube.com/watch?v=-Jh0EN1De4Q">ÁSZF-et</a></mat-checkbox>
       </section>
-      <div>
-        <mat-error *ngIf="hiba">{{ErrorMessage_hianyzik}}</mat-error>
-        </div>    
+      
        <div>
         <button id="visszabtn" mat-raised-button matStepperPrevious>Vissza</button>
         <button id="tovabbbtn" mat-raised-button color="primary" (click)="leadas()">Rendelés leadás</button>

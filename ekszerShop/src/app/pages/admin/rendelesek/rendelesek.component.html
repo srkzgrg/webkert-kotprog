@@ -11,6 +11,7 @@
          </mat-panel-description>
        </mat-expansion-panel-header>
        <p class="acc"><mat-icon>account_circle</mat-icon>: {{item.user_id}}</p>
+       <p class="termekekp">Termékek: </p>
        <div *ngFor="let i of item.termekek">
        <p>{{i.termek.nev}}:&emsp;{{i.ar}} Ft&emsp;({{i.mennyiseg}} db)</p>
      </div>
@@ -36,6 +37,8 @@
                Rendelés azonosító: {{item.id}}
               </mat-panel-description>
             </mat-expansion-panel-header>
+            <p class="acc"><mat-icon>account_circle</mat-icon>: {{item.user_id}}</p>
+            <p class="termekekp">Termékek: </p>
             <div *ngFor="let i of item.termekek">
               <p>{{i.termek.nev}}:&emsp;{{i.ar}} Ft&emsp;({{i.mennyiseg}} db)</p>
           </div>
@@ -60,6 +63,8 @@
                Rendelés azonosító: {{item.id}}
               </mat-panel-description>
             </mat-expansion-panel-header>
+            <p class="acc"><mat-icon>account_circle</mat-icon>: {{item.user_id}}</p>
+            <p class="termekekp">Termékek: </p>
             <div *ngFor="let i of item.termekek">
               <p>{{i.termek.nev}}:&emsp;{{i.ar}} Ft&emsp;({{i.mennyiseg}} db)</p>
           </div>
