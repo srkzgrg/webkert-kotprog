@@ -6,7 +6,7 @@ img{
 }
 
 mat-card{
-     margin-top: 20px;
+     margin-top: 25px;
      box-shadow: -10px 5px 10px 10px rgb(228, 228, 228);
      padding-left: 15px;
      margin-bottom: 20px;
@@ -24,6 +24,7 @@ mat-card-subtitle{
 button{
      font-size: 25px;
      margin-top: 15px;
+     margin-bottom: 10px;
 }
 
 #loginbtn{
@@ -35,4 +36,10 @@ button{
      width: 40%;
      margin-left: 5%;
      margin-right: 5%;
+}
+
+#filter{
+    margin-top: 25px;
+    margin-bottom: 25px;
+     text-align: center;
 }

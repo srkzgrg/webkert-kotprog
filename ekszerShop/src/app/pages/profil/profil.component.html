@@ -7,11 +7,11 @@
           Rendelés: {{item.datum | date}}
          </mat-panel-title>
          <mat-panel-description>
-          Rendelés azonosító: {{item.id}}
+          Rendelés azonosító: {{item.id}}<span style="margin-left: 10%;">Státusz: {{item.statusz}}</span>
          </mat-panel-description>
        </mat-expansion-panel-header>
        <div *ngFor="let i of item.termekek">
-       <p>{{i.termek.nev}}:&emsp;{{i.mennyiseg}} db => {{i.ar}} Ft</p>
+       <p>{{i.termek.nev}}:&emsp;{{i.ar}} Ft&emsp;[{{i.mennyiseg}} db]</p>
      </div>
      <mat-divider></mat-divider>
      <p>Összesen:&emsp;{{item.osszar}} Ft</p>

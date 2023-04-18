@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from '../../services/auth.service';
@@ -12,7 +13,11 @@ import { AuthService } from '../../services/auth.service';
 export class MenuComponent implements OnInit {
     loggedInUser?: firebase.default.User | null;
     admin?: string | null;
-    constructor(private authService: AuthService, private userServie: UserService){}
+    constructor(
+      private authService: AuthService, 
+      private userServie: UserService,
+      private router: Router
+      ){}
     
   ngOnInit(): void {
     this.authService.isUserLoggedIn().subscribe(user => {
@@ -40,6 +45,8 @@ export class MenuComponent implements OnInit {
         console.log('Logged out successfully.');
         localStorage.setItem('user', JSON.stringify('null'));
         localStorage.setItem('admin', JSON.stringify('null'));
+        location.reload();
+
       }).catch(error => {
         console.error(error);
       });

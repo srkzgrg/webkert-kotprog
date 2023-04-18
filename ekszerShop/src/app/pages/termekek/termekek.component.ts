@@ -21,6 +21,7 @@ export class TermekekComponent {
   ks?: Array<Kosar>;
   subscription?: Subscription;
   durationInSeconds=3;
+  kategoria?: string;
 
   constructor(
     private productService: ProductService, 
@@ -28,17 +29,21 @@ export class TermekekComponent {
     private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.productService.getAll().pipe(take(1)).subscribe((data: Array<Product>) => {
+    this.getTermekek();
+    
+    this.loggedInUser = JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
+  }
+
+  getTermekek(){
+    this.productService.getAll().subscribe((data: Array<Product>) => {
       this.termekek = data;
       for(let i = 0; i < this.termekek.length; i++){
-        this.productService.loadImage(this.termekek[i].image_url).pipe(take(1)).subscribe(data => {
+        this.productService.loadImage(this.termekek[i].image_url).subscribe(data => {
           this.termekek![i].download_url = data
         })
        
       }
     });
-    
-    this.loggedInUser = JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
   }
 
   addKosar(product: Product){
@@ -75,5 +80,20 @@ export class TermekekComponent {
 
     OnDestroy(){
       this.subscription?.unsubscribe;
+    }
+
+    onCategoryChange(event: any){
+      if(event.value === "all") this.getTermekek()
+      else{
+        this.productService.getByCategory(event.value).pipe(take(1)).subscribe((data: Array<Product>) => {
+          this.termekek = data;
+          for(let i = 0; i < this.termekek.length; i++){
+            this.productService.loadImage(this.termekek[i].image_url).pipe(take(1)).subscribe(data => {
+              this.termekek![i].download_url = data
+            })
+          }
+        });
+      }
+     
     }
 }

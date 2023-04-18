@@ -23,6 +23,10 @@ export class ProductService {
     return this.afs.collection<Product>(this.collectionName).valueChanges();
   }
 
+  getByCategory(category: string): Observable<Array<Product>> {
+    return this.afs.collection<Product>(this.collectionName,  ref => ref.where('tipus','==',category)).valueChanges();
+  }
+
   loadImage(imageUrl: string) {
     return this.storage.ref(imageUrl).getDownloadURL();
 
