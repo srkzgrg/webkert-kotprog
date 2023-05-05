@@ -1,6 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { take, VirtualTimeScheduler } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
 import { Rendeles } from '../../models/Rendeles';
 import { RendelesService } from '../../services/rendeles.service';
 

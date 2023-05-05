@@ -1,10 +1,9 @@
-import { AfterViewChecked, Component, Input, OnInit, Output } from '@angular/core';
-import { MatDialog, MatDialogState } from '@angular/material/dialog';
-import { finalize, take } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { take } from 'rxjs';
 import { Product } from 'src/app/models/Product';
 import { ProductService } from 'src/app/services/product.service';
 import { DialogComponent } from './dialog/dialog.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProductAddDialogComponent } from './product-add-dialog/product-add-dialog.component';
 import { AfterContentChecked } from '@angular/core';
 
