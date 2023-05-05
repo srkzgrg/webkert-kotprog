@@ -78,5 +78,8 @@ Egy ékszereket áruló webshopról készült a projektmunka. Lehetőség van a 
 - e-mail: admin@admin.hu
 - jelszó: admin123
 
+### 3.2 hiba
+
+- Ha esetleg nem működne egy node_modules Angular15 miatt, akkor keress bátran e-mailben.
 
 Szeged, 2023.05.03
