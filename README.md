@@ -26,6 +26,7 @@ Egy ékszereket áruló webshopról készült a projektmunka. Lehetőség van a 
 3. Termékek [User]
 	- A termékek oldalon bejelentkezés után lehetőség van kosárhoz adni termékeket.
 	- Egy terméket többször is hozzá lehet adni a kosárhoz, ezzel növelve a mennyiséget.
+	- Az oldal tetején lehetőség van kategóriára szűrni.
 	
 3. Kosár [User]
 	- A kosarat csak bejelentkezett felhasználók tekinthetik meg (AuthGuard)
@@ -40,15 +41,16 @@ Egy ékszereket áruló webshopról készült a projektmunka. Lehetőség van a 
 	- A profilt csak bejelentkezett felhasználók tekinthetik meg (AuthGuard)
 	- Láthatjuk az összes korábbi rendelésünket.
 	- Az adott rendelésre kattintva részletes információt kapunk a termékekről, árakról.
+	- Nyomon tudjuk követni a rendelés státuszát.
 
 4. Termékek kezelése [Admin]
-	- A termékek kezelése oldalt csak admin jogosultságú felhasználók érhetnek el meg (AuthGuard)
+	- A termékek kezelése oldalt csak admin jogosultságú felhasználók érhetnek el (AuthGuard)
 	- Módosíthatjuk az eddigi termékek adatait (ID-t kivéve)
 		- Új kép feltöltése esetén elmentődik a FireStore tárolóba
 	- Hozzáadhatunk új termékeket.
 
 5. Rendelések kezelése [Admin]
-	- A rendelések kezelése oldalt csak admin jogosultságú felhasználók érhetnek el meg (AuthGuard)
+	- A rendelések kezelése oldalt csak admin jogosultságú felhasználók érhetnek el (AuthGuard)
 	- Lehetőségünk van módosítani a rendelések státuszán:
 		- "Feldolgozás alatt"
 		- "Kiszállítás alatt"
@@ -77,6 +79,4 @@ Egy ékszereket áruló webshopról készült a projektmunka. Lehetőség van a 
 - jelszó: admin123
 
 
-Szeged, 2023.04.17
-
-
+Szeged, 2023.05.03
