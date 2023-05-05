@@ -4,7 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { KosarService } from '../../services/kosar.service';
 import { Kosar } from 'src/app/models/Kosar';
 import { Subscription, take } from 'rxjs';
-import { MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-termekek',
