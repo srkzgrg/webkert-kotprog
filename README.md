@@ -78,7 +78,13 @@ Egy ékszereket áruló webshopról készült a projektmunka. Lehetőség van a 
 - e-mail: admin@admin.hu
 - jelszó: admin123
 
-### 3.2 hiba
+### 3.2 Beüzemelés
+
+1. git clone https://github.com/srkzgrg/webkert-kotprog
+2. cd webkert-kotprog
+3. cd ekszerShop
+4. npm install --force
+5. ng serve
 
 - Ha esetleg nem működne egy node_modules Angular15 miatt, akkor keress bátran e-mailben.
 
