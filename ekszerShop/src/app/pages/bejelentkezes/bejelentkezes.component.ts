@@ -22,10 +22,11 @@ export class BejelentkezesComponent {
         this._snackBar.open("Nem megfelelő e-mail formátum", "OK");
       }else{
         this.authService.login(this.email.value!, this.password.value!).then(cred => {
-  
           this.router.navigateByUrl('/main');
         }).catch(error => {
-          this._snackBar.open("Nincs ilyen fiók", "OK");
+          if(error.code === "auth/user-not-found"){
+            this._snackBar.open("Nincs ilyen fiók", "OK");
+          }
         });
       }
     }
